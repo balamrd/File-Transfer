@@ -12,7 +12,7 @@ https://github.com/gulshan-mittal/Socket-Programming
 
 ## How to build (.exe file)
 
-1. pip install auto-py-to-exe
+1. Run "pip install auto-py-to-exe" in cmd prompt
 2. Run "auto-py-to-exe" in cmd prompt
 3. Compile and build CAserver.exe, CAclientNP.exe and CAclientP.exe with CAserver.py, CAclientNP.py and CAclientP.py respectively. (A sample image is shown below.)
 ![Sample Image](sample.PNG)
