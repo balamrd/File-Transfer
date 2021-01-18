@@ -10,7 +10,7 @@ https://github.com/gulshan-mittal/Socket-Programming
 3. Run the CAclientNP.py/CAclientP.py with the PC receiving the file (another PC)
 4. Key in the IP address that appears on the Server program into the Client program
 
-## How to build exe file
+## How to build (.exe file)
 
 1. pip install auto-py-to-exe
 2. Run "auto-py-to-exe" in cmd prompt
