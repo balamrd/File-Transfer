@@ -19,4 +19,7 @@ https://github.com/gulshan-mittal/Socket-Programming
 
 ## How to use (.exe file)
 
-1. Just run the exe file
+1. Place the file (with an extension) (not a folder) into the Data folder
+2. Run the CAserver.py with the PC containing the file
+3. Run the CAclientNP.exe/CAclientP.exe with the PC receiving the file (another PC)
+4. Key in the IP address that appears on the Server program into the Client program
