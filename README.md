@@ -26,5 +26,5 @@ https://github.com/gulshan-mittal/Socket-Programming
 
 ### Take Note (Some problems encountered):
 
-1. Please ensure that the firewall (windows or antivirus) is not blocking the internet connection of your program
+1. Please ensure that the firewall (windows or antivirus) is not blocking the internet connection of your program (Meaning, check the program or python has access through the firewall)
 2. Please also make sure that the default program for the .py file is python so that the .py file can access the dir via scandir() when you open it with python, not idle (Meaning, if idle.bat is the default program, and the .py file is run with python, the program is not able to access the Data folder.)
