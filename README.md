@@ -9,3 +9,7 @@ https://github.com/gulshan-mittal/Socket-Programming
 2. Run the CAserver.exe with the PC containing the file
 3. Run the CAclientNP.exe/CAclientP.exe with the PC receiving the file (another PC)
 4. Key in the IP address that appears on the Server program into the Client program
+
+### Take Note (Some problems encountered):
+
+1. Please ensure that the firewall (windows or antivirus) is not blocking the internet connection of your program
