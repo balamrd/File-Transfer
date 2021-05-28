@@ -13,3 +13,4 @@ https://github.com/gulshan-mittal/Socket-Programming
 ### Take Note (Some problems encountered):
 
 1. Please ensure that the firewall (windows or antivirus) is not blocking the internet connection of your program (Meaning, check the program has access through the firewall)
+2. Please take note that MacOS is not supported.
