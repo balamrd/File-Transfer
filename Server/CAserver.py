@@ -1,6 +1,8 @@
 from socket import *
 from sys import *
-from os import scandir
+from os import scandir, stat
+from tqdm import tqdm
+
 
 def nonPersistentrequest(conn):
     print('Sending', request)
@@ -27,10 +29,14 @@ def Persistentrequest(conn):
 
 def sendFile(conn, response):
     fb = open('./Data/' + response, 'rb')
+    fsize = int(stat('./Data/'+response).st_size)
+    pbar = tqdm(total=fsize, bar_format='{l_bar}{bar} | Remaining: {remaining}')
     fb_read = fb.read(4096)
     while (fb_read):
         sendData(conn, fb_read)
+        pbar.update(4096)
         fb_read = fb.read(4096)
+    pbar.close()
     fb.close()
 
 
@@ -80,8 +86,10 @@ def get_ip():
     return IP
 
 if __name__ == '__main__':
+    
     host = get_ip()
-    port = 9641      # Port to listen on 
+    port = 9641      # Port to listen on
+    
 
     print(host)
 
@@ -107,7 +115,9 @@ if __name__ == '__main__':
             lststr = ''
             for entry in scandir(path):
                 if entry.is_file() == 1:
-                    lststr += entry.name + '|?!~' #separating condition for split
+                    entrysize = int(stat(entry).st_size)
+                    lststr += entry.name + '==' + str(entrysize) + '|?!~' #separating condition for split
+                    #lststr += entry.name + '|?!~' #separating condition for split
             lststr = lststr[:len(lststr)-len('|?!~')]
             lststr = lststr.encode('utf-8')
             sendData(conn, lststr)

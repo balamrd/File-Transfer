@@ -1,13 +1,15 @@
 from socket import *
 from sys import *
 from time import *
+from tqdm import tqdm
 
-
-def recvFile(s, request):
+def recvFile(s, request, filesize):
     fb = open(request, 'wb')
     print('Receiving Data...')
+    pbar = tqdm(total=filesize, bar_format='{l_bar}{bar} | Remaining: {remaining}')
     while True:
         response = recvData(s)
+        pbar.update(4096)
         if b'END OF FILE CHECK' in response:
             response = response[:len(response)-len(b'END OF FILE CHECK')]
             if response:
@@ -15,6 +17,7 @@ def recvFile(s, request):
             break
         else:
             fb.write(response)
+    pbar.close()
     fb.close()
     print('Successfully got the file:', request)
 
@@ -82,10 +85,15 @@ if __name__ == '__main__':
     print('connection closed')
 
     response = response.decode('utf-8')
-    lst = response.split('|?!~') 
-    print('There are', str(len(lst)), 'objects in the server')
-    print(lst)
-    
+    lst_withsize = response.split('|?!~')
+    print('There are', str(len(lst_withsize)), 'objects in the server')
+    lst = []
+    lstz = []
+    for i in range(len(lst_withsize)):
+        filename,filesize = lst_withsize[i].split('==')
+        print(filename)
+        lst.append(filename)
+        lstz.append(int(filesize))
     # Initial time in milliseconds file transfer 
     initial_time = int(round(time() * 1000))
 
@@ -97,7 +105,7 @@ if __name__ == '__main__':
         lst[i] = lst[i].encode('utf-8')
         sendData(s, lst[i])
         lst[i] = lst[i].decode('utf-8')
-        recvFile(s, lst[i])
+        recvFile(s, lst[i], lstz[i])
         s.close()
         print('connection closed')
 
